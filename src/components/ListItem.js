@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View} from 'react-native';
 import {Feather} from '@expo/vector-icons';
+import { weatherType } from '../utilities/weatherType';
 //item component
 const ListItem = (props) => {
     
@@ -9,10 +10,10 @@ const ListItem = (props) => {
 
     return(
         <View style={styles.item}>
-            <Feather name='moon' size={50} color='yellow'/>
+            <Feather name={weatherType[condition].icon} size={50} color='yellow'/>
             <Text style={styles.date}>{dt_txt}</Text>
-            <Text style={styles.temp}>{min}</Text>
-            <Text style={styles.temp}>{max}</Text>
+            <Text style={styles.temp}>{Math.round(min)} </Text>
+            <Text style={styles.temp}>{Math.round(max)}</Text>
         </View>
     )
 }

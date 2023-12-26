@@ -8,21 +8,30 @@ import {Feather} from '@expo/vector-icons';
 
 import { StatusBar } from 'expo-status-bar';
 
+
+import { weatherType } from '../utilities/weatherType';
+
 import RowText from '../components/RowText';
 
-const CurrentWeather = () => {
+const CurrentWeather = ({weatherData}) => {
+
+  //destructure
+  const {main: {temp, feels_like, temp_max, temp_min}, weather} = weatherData
+
+  //get the weather condition
+  const weatherCondition = weather[0].main
 
   return (
-    <SafeAreaView style={styles.wrapper}>
+    <SafeAreaView style={[styles.wrapper, {backgroundColor: weatherType[weatherCondition].backgroundColor}]}>
       <View style={styles.container}>
         {/* use icon with name, size, color */}
-        <Feather name='sun' size={100} color='yellow'/>
-        <Text style={styles.temperature}>9</Text>
-        <Text style={styles.feel}>Feel like coding</Text>
+        <Feather name={weatherType[weatherCondition].icon} size={100} color='white'/>
+        <Text style={styles.temperature}>{temp}</Text>
+        <Text style={styles.feel}>{feels_like}</Text>
         
         <RowText 
-          messageOne={'High: 12'} 
-          messageTwo={'Low: 4'} 
+          messageOne={`High: ${temp_max}`} 
+          messageTwo={`Low: ${temp_min}`} 
           containerStyles={styles.highLowWrapper}
           messageOneStyles={styles.highLow}
           messageTwoStyles={styles.highLow}
@@ -30,8 +39,8 @@ const CurrentWeather = () => {
       </View>
 
       <RowText 
-          messageOne={'It\'s sunny'} 
-          messageTwo={'T-shirt weather'} 
+          messageOne={weather[0].description} 
+          messageTwo={weatherType[weatherCondition].message} 
           containerStyles={styles.bodyWrapper}
           messageOneStyles={styles.description}
           messageTwoStyles={styles.message}
