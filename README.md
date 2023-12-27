@@ -1,7 +1,6 @@
 # React Native Weather App
 
-This is a simple Weather App in React Native. Even though it is not functioning due to real-time data fetching issues, the project covers the following basic concepts 
-and it is a good starting point to learn React Native:
+This is a simple Weather App in React Native. The project is a good starting point to learn React Native and it covers the following basic concepts:
 
 1. make customized React Native component
 2. component design structures and choices
